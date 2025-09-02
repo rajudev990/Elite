@@ -40,7 +40,7 @@
                                     </h2>
                                     <div id="faq-{{ $faq->id }}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion-{{ $faq->id }}">
                                         <div class="accordion-body">
-                                           {{ $faq->description }}
+                                           {!! $faq->description !!}
                                         </div>
                                     </div>
                                 </div>

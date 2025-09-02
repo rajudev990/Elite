@@ -14,11 +14,14 @@ use App\Models\PortfolioCategory;
 use App\Models\SectionTitle;
 use App\Models\Service;
 use App\Models\ServiceOne;
+use App\Models\ServiceTwo;
+use App\Models\ServiceThree;
 use App\Models\Setting;
 use App\Models\Team;
 use App\Models\Testimonial;
 use App\Models\Welcome;
 use App\Models\WhyChoose;
+use App\Models\WorkingArea;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -63,11 +66,20 @@ class WebsiteController extends Controller
 
     public function serviceSingle($title)
     {
+       
         $service = Service::where('title', $title)->firstOrFail();
         $tools = ServiceOne::where('status',1)->where('service_type','Tools & Technologies')->get();
         $process = ServiceOne::where('status',1)->where('service_type','Our Process')->get();
         $webbuild = ServiceOne::where('status',1)->where('service_type','Types of Websites We Build')->get();
-        return view('frontend.service-signle', compact('service','tools','process','webbuild'));
+        $section_title = SectionTitle::first();
+
+        $what = ServiceTwo::where('status',1)->where('service_type','What We Are Doing')->get();
+        $workflow = ServiceTwo::where('status',1)->where('service_type','Our Processing Workflow')->get();
+        $worktype = ServiceTwo::where('status',1)->where('service_type','Work Type')->get();
+        $workarea = WorkingArea::where('status',1)->get();
+        $packages = ServiceThree::where('status',1)->get();
+
+        return view('frontend.service-signle', compact('service','tools','process','webbuild','section_title','what','workflow','worktype','workarea','packages'));
     }
 
 

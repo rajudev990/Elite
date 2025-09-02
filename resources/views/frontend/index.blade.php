@@ -68,7 +68,7 @@
 
                         <h4 style="font-size:30px;" class="display-5 mb-2">We have <span id="element"></span></h4>
                         <p class="fs-5" style="text-align: justify;font-size:16px !important;">
-                            {{ $welcome->description }}
+                            {!! $welcome->description !!}
                         </p>
                         <div class="row atn-items-list">
 
