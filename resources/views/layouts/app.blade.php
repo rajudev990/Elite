@@ -62,7 +62,7 @@ $setting = \App\Models\Setting::first();
         <div class="row gx-0 align-items-center" style="height: 45px;">
             <div class="col-lg-9 text-center text-lg-start mb-lg-0">
                 <div class="d-flex flex-wrap">
-                    <!-- <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt me-2"></i>{{ $setting->address }}</a> -->
+                    <a href="#" class="text-light me-4"><i class="fas fa-map-marker-alt me-2"></i>{{ $setting->address }}</a>
                     <a href="https://wa.me/{{$setting->phone_one}}" class="text-light me-4"><i class="fas fa-phone-alt me-2"></i>{{ $setting->phone_one }}</a>
                     <a href="mailto:{{ $setting->email_one }}" class="text-light me-0">
                         <i class="fas fa-envelope me-2"></i>{{ $setting->email_one }}
