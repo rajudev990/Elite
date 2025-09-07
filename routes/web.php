@@ -33,9 +33,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
 
 
-Route::get('auth/{provider}', [WebsiteController::class, 'redirect'])->name('social.redirect');
-Route::get('auth/{provider}/callback', [WebsiteController::class, 'callback'])->name('social.callback');
-
 
 Route::get('/cmd', function () {
     Artisan::call('storage:link');
@@ -48,7 +45,7 @@ Route::get('/cmd', function () {
 
 
 
-Route::get('/', [WebsiteController::class, 'home'])->name('index');
+// Route::get('/', [WebsiteController::class, 'home'])->name('index');
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact');
 Route::post('/contact', [WebsiteController::class, 'contactStore'])->name('contacts.store');
 Route::get('/blog', [WebsiteController::class, 'blog'])->name('blog');
@@ -61,21 +58,25 @@ Route::get('{slug}',[WebsiteController::class,'page'])->name('page');
 
 
 
-Auth::routes(['verify' => true]);
+// Shop Auth
+Route::get('shop/login', [LoginController::class, 'showLoginFormShop']);
+Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login');
+Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 
-Route::middleware(['auth', 'no.admin', 'verified'])->group(function () {
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
+// Auth::routes(['verify' => true]);
+// Route::middleware(['auth', 'no.admin', 'verified'])->group(function () {
+//     Route::get('/home', function () {
+//         return view('home');
+//     })->name('home');
 
-    Route::get('settings', [HomeController::class, 'settings'])->name('user.settings');
-    Route::get('profile', [HomeController::class, 'profile'])->name('user.profile');
-    Route::get('profile/edit', [HomeController::class, 'profileEdit'])->name('user.profile.edit');
-    Route::put('/profile/update', [HomeController::class, 'update'])->name('user.profile.update');
-    Route::get('password/edit', [HomeController::class, 'passwordEdit'])->name('user.password.edit');
-    Route::post('/password-update', [HomeController::class, 'updatePassword'])->name('user.password.update');
-});
+//     Route::get('settings', [HomeController::class, 'settings'])->name('user.settings');
+//     Route::get('profile', [HomeController::class, 'profile'])->name('user.profile');
+//     Route::get('profile/edit', [HomeController::class, 'profileEdit'])->name('user.profile.edit');
+//     Route::put('/profile/update', [HomeController::class, 'update'])->name('user.profile.update');
+//     Route::get('password/edit', [HomeController::class, 'passwordEdit'])->name('user.password.edit');
+//     Route::post('/password-update', [HomeController::class, 'updatePassword'])->name('user.password.update');
+// });
 
 
 
